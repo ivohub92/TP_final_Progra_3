@@ -1,0 +1,66 @@
+<%- include('../partes/header') %>
+
+<h1>Agregar Nueva GiftCard</h1>
+
+<body id="pagina" data-bs-theme="light" style="transition: background-color 0.5s, color 0.5s;"></body>
+
+<div class="container mt-4">
+  <h2 class="mb-4">Crear GiftCard</h2>
+  
+<form id="formCrearGiftCard" enctype="multipart/form-data" 
+  class="modoclarooscuro p-4 shadow rounded bg-light text-dark row g-3" 
+  data-token="<%= token %>">
+
+  <div class="col-md-6">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" name="nombre" class="form-control" required>
+  </div>
+
+  <div class="col-md-6">
+    <label for="precio" class="form-label">Precio</label>
+    <input type="number" name="precio" step="0.01" min="0.01" class="form-control" required>
+  </div>
+
+  <div class="col-md-6">
+    <label for="empresa" class="form-label">Empresa</label>
+    <input type="text" name="empresa" class="form-control">
+  </div>
+
+  <div class="col-md-6">
+    <label for="consola" class="form-label">Consola Principañ</label>
+    <input type="text" name="consola" class="form-control">
+  </div>
+
+  <div class="col-md-6">
+    <label for="stock" class="form-label">Stock</label>
+    <input type="number" name="stock" min="0" class="form-control" required>
+  </div>
+
+  <div class="col-md-6">
+    <label for="fecha_caducidad" class="form-label">Fecha de Caducidad</label>
+    <input type="date" id="fechaCaducidadInput" name="fecha_caducidad" class="form-control">
+  </div>
+
+  <div class="col-md-12">
+    <label for="plataformas_disponibles" class="form-label">Otras plataformas</label>
+    <input type="text" name="plataformas_disponibles" class="form-control">
+  </div>
+
+  <div class="col-md-12">
+    <label for="imagen" class="form-label">Imagen</label>
+    <input type="file" name="imagen" class="form-control">
+  </div>
+
+  <div class="col-12 d-flex justify-content-between mt-3">
+    <a href="/admin/panelProductos" class="btn btn-secondary">Volver al Panel</a>
+    <button type="submit" class="btn btn-primary">Crear GiftCard</button>
+  </div>
+</form>
+</div>
+
+<script src="/js/crearGiftCard.js"></script>
+<script src="/js/validarFechaGiftCard.js"></script>
+</body>>
+<%- include('../partes/footer') %>
+
+

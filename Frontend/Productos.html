@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Shop - Productos</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/productos.css">
+  <link rel="icon" href="http://localhost:3000/imagenes/logo/logo.png" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <img src="http://localhost:3000/Imagenes/logo/logo.png" alt="Logo de GameGift" class="logo">
+    <h1>Game Shop</h1>
+    <button id="modo-btn">
+      <span id="icono">🌙</span> 
+    </button>
+    <a href="carrito.html" class="btn-carrito" style="margin-left:auto">🛒 Ver Carrito</a>
+  </header>
+
+  <main>
+    
+    <nav>
+      <a href="index.html" id="linkInicio">Inicio</a>
+      <a href="productos.html" id="linkProductos">Productos</a>
+      <a href="carrito.html" id="linkCarrito">Carrito</a>
+      <a href="ticket.html" id="linkTicket">Ticket</a>
+    </nav>
+
+    <div class="filtro-categoria">
+      <h4>Categoría:</h4>
+      <select id="cambiar-categoria">
+          <option value="Todos" selected="">Todos</option>
+          <option value="Juegos">Juegos</option>
+          <option value="Gift Card">Gift Cards</option>
+      </select>
+    </div>
+    
+    <section id="principal">
+        <div id="contenedor-productos"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Game Shop. División 331 | Profesores: Horacio Serrano, Ibrahim Rodríguez</p>
+      <p>Integrantes: Thiago Garcia, Emanuel Mendoza, Iván Ramunda</p>
+    </div>
+  </footer>
+</body>
+<script src="js/modo.js"></script>
+<script src="js/Juego.js"></script>
+<script src="js/GiftCard.js"></script>
+<script src="js/Productos.js"></script>
+</html>

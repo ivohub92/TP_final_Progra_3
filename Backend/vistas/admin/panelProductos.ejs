@@ -1,0 +1,167 @@
+<body id="pagina" data-bs-theme="light" style="transition: background-color 0.5s, color 0.5s;">
+  <%- include('../partes/header') %>
+
+  <div class="container mt-5">
+    <h1 class="mb-4">Panel de Administración</h1>
+
+    <div class="mb-4 modoclarooscuro"> <!-- Añadí esta clase para que reaccione -->
+      <a href="/admin/crearJuego" class="btn btn-success me-2">Agregar Nuevo Juego</a>
+      <a href="/admin/crearGiftCard" class="btn btn-success me-2">Agregar Nueva GiftCard</a>
+      <a href="/admin/panelVentas" class="btn btn-primary me-2">Ver Ventas</a>
+      <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+    </div>
+
+    <div class="container mt-4 modoclarooscuro"> <!-- También aquí -->
+      <h2>Juegos</h2>
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (juegos && juegos.length) { %>
+            <% juegos.forEach(juego => { %>
+              <tr>
+                <td><%= juego.nombre %></td>
+                <td class="text-end">$<%= juego.precio.toFixed(2) %></td>
+                <td class="text-center"><%= juego.stock %></td>
+                <td class="text-center">
+                  <span class="badge <%= juego.activo ? 'bg-success' : 'bg-secondary' %>">
+                    <%= juego.activo ? 'Activo' : 'Inactivo' %>
+                  </span>
+                </td>
+                <td class="text-center">
+                  <a href="/admin/editarJuego/<%= juego.id %>" class="btn btn-sm btn-outline-primary me-1">Editar</a>
+                  <% if (juego.activo) { %>
+                    <button class="btn btn-sm btn-outline-danger btn-cambiar-estado"
+                      data-id="<%= juego.id %>" data-tipo="juego" data-activar="false">
+                      Desactivar
+                    </button>
+                  <% } else { %>
+                    <button class="btn btn-sm btn-outline-success btn-cambiar-estado"
+                      data-id="<%= juego.id %>" data-tipo="juego" data-activar="true">
+                      Reactivar
+                    </button>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr><td colspan="5" class="text-center">No hay juegos para mostrar</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+
+      <!-- Paginación Juegos -->
+      <nav aria-label="Paginación Juegos">
+        <ul class="pagination justify-content-center">
+          <% for(let i = 1; i <= juegosPagination.totalPages; i++) { %>
+            <li class="page-item <%= i === juegosPagination.currentPage ? 'active' : '' %>">
+              <a class="page-link" href="?pageJuegos=<%= i %>&pageGiftcards=<%= giftcardsPagination.currentPage %>"><%= i %></a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+
+      <hr>
+
+      <h2>GiftCards</h2>
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (giftcards && giftcards.length) { %>
+            <% giftcards.forEach(giftcard => { %>
+              <tr>
+                <td><%= giftcard.nombre %></td>
+                <td class="text-end">$<%= giftcard.precio.toFixed(2) %></td>
+                <td class="text-center"><%= giftcard.stock %></td>
+                <td class="text-center">
+                  <span class="badge <%= giftcard.activo ? 'bg-success' : 'bg-secondary' %>">
+                    <%= giftcard.activo ? 'Activo' : 'Inactivo' %>
+                  </span>
+                </td>
+                <td class="text-center">
+                  <a href="/admin/editarGiftCard/<%= giftcard.id %>" class="btn btn-sm btn-outline-primary me-1">Editar</a>
+                  <% if (giftcard.activo) { %>
+                    <button class="btn btn-sm btn-outline-danger btn-cambiar-estado"
+                      data-id="<%= giftcard.id %>" data-tipo="giftcard" data-activar="false">
+                      Desactivar
+                    </button>
+                  <% } else { %>
+                    <button class="btn btn-sm btn-outline-success btn-cambiar-estado"
+                      data-id="<%= giftcard.id %>" data-tipo="giftcard" data-activar="true">
+                      Reactivar
+                    </button>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr><td colspan="5" class="text-center">No hay GiftCards para mostrar</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+
+      <!-- Paginación GiftCards -->
+      <nav aria-label="Paginación GiftCards">
+        <ul class="pagination justify-content-center">
+          <% for(let i = 1; i <= giftcardsPagination.totalPages; i++) { %>
+            <li class="page-item <%= i === giftcardsPagination.currentPage ? 'active' : '' %>">
+              <a class="page-link" href="?pageJuegos=<%= juegosPagination.currentPage %>&pageGiftcards=<%= i %>"><%= i %></a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+
+    </div>
+
+    <!-- Modal confirmación -->
+    <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" data-bs-theme="light"> <!-- Lo dejé fijo claro para que modal siempre luzca bien -->
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title">Confirmar acción</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <p id="modalMensaje">¿Estás seguro de realizar esta acción?</p>
+          </div>
+          <div class="modal-footer">
+            <button id="btnCancelar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button id="btnConfirmar" type="button" class="btn btn-danger">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+ <script type="module">
+  import { crearControladorEstado } from '/js/controladorTokenProductos.js';
+  import { inicializarControladorEstado } from '/js/controladorModalEstado.js';
+
+  const token = '<%= token %>';
+  const controlador = crearControladorEstado(token);
+
+  inicializarControladorEstado(token, { controladorEstado: controlador });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<%- include('../partes/footer') %>

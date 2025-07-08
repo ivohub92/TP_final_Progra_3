@@ -1,0 +1,73 @@
+<body id="pagina" data-bs-theme="light" style="transition: background-color 0.5s, color 0.5s;">
+  <%- include('../partes/header') %>
+
+<h1>Agregar Nuevo Juego</h1>
+<div class="container mt-4">
+  <h2 class="mb-4">Crear Juego</h2>
+
+ 
+  <form id="formCrearJuego" enctype="multipart/form-data" 
+      class="modoclarooscuro p-4 shadow rounded bg-light text-dark row g-3" 
+      data-token="<%= token %>">
+
+    <div class="col-md-6">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" name="nombre" class="form-control" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="precio" class="form-label">Precio</label>
+      <input type="number" name="precio" step="0.01" min="0.01" class="form-control" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="stock" class="form-label">Stock</label>
+      <input type="number" name="stock" min="0" class="form-control" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="empresa" class="form-label">Empresa</label>
+      <input type="text" name="empresa" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label for="consola" class="form-label">Consola</label>
+      <input type="text" name="consola" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label for="fecha_lanzamiento" class="form-label">Fecha de Lanzamiento</label>
+      <input type="date" name="fecha_lanzamiento" class="form-control">
+    </div>
+
+    <div class="col-md-12">
+      <label for="requerimientos_minimos" class="form-label">Requisitos</label>
+      <input type="text" name="requerimientos_minimos" class="form-control">
+    </div>   
+
+    <div class="col-md-12">
+      <label for="genero" class="form-label">Género</label>
+      <input type="text" name="genero" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label for="puntuacion_general" class="form-label">Puntuación General</label>
+      <input type="number" name="puntuacion_general" min="1" max="10" step="0.1" class="form-control" required>
+    </div>
+
+    <div class="col-md-12">
+      <label for="imagen" class="form-label">Imagen</label>
+      <input type="file" name="imagen" class="form-control">
+    </div>
+
+    <div class="col-12 d-flex justify-content-between mt-3">
+      <a href="/admin/panelProductos" class="btn btn-secondary">Volver al Panel</a>
+      <button type="submit" class="btn btn-primary">Crear Juego</button>
+    </div>
+  </form>
+</div>
+
+
+<script src="/js/crearJuego.js"></script>
+
+<%- include('../partes/footer') %>

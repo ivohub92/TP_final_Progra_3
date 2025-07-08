@@ -1,0 +1,92 @@
+.btn-volver {
+  background: #fff;
+  color: #202020;
+  border-radius: 10px;
+  padding: 10px 22px;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(30,30,30,0.08);
+  text-decoration: none;
+  font-size: 1.08rem;
+  display: inline-block;
+  transition: background 0.18s, box-shadow 0.18s;
+}
+
+.Eliminar {
+  position: relative;
+  background: #ff4d4d;
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 16px;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(30,30,30,0.08);
+  text-decoration: none;
+  font-size: 1.08rem;
+  display: inline-block;
+  transition: background 0.18s, box-shadow 0.18s;
+}
+
+.btn-volver:hover {
+  background: #8a8383;
+  box-shadow: 0 4px 14px 0 rgba(5, 5, 5, 0.13);
+}
+
+h2, h4 {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+#pasarTickt {
+  display: block;
+  margin: 32px auto 32px auto; 
+  padding: 12px 36px;
+  background-color: #3e67fa;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(30,30,30,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+#pasarTickt:hover {
+  background-color: #294bdb;
+  color: #e6e6e6;
+  box-shadow: 0 4px 16px 0 rgba(30,30,30,0.18);
+}
+
+#carrito-listado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;             
+  justify-content: center; 
+  width: 100%;
+  margin: 0 auto;
+  padding: 18px 0;
+}
+
+@media (max-width: 600px) {
+  h2, h4 {
+    font-size: 1.13rem;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+
+  .btn-volver,
+  #pasarTickt {
+    font-size: 1rem;
+    padding: 10px 10px;
+    width: 95%;
+    max-width: 320px;
+    margin: 20px auto 20px auto;
+  }
+
+  #carrito-listado {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+  }
+}

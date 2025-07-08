@@ -1,0 +1,87 @@
+<body id="pagina" data-bs-theme="light" style="transition: background-color 0.5s, color 0.5s;">
+  <%- include('../partes/header') %>
+
+<div class="container mt-4">
+    <h1 class="mb-4">Editar Juego: <%= juego.nombre %></h1>
+
+    <form id="formEditarJuego" enctype="multipart/form-data" 
+          class="modoclarooscuro p-4 shadow rounded bg-light text-dark row g-3" 
+          data-token="<%= token %>">
+      <input type="hidden" name="juegoId" value="<%= juego.id %>">
+
+    <div class="col-md-6">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" id="nombre" name="nombre" class="form-control" 
+             value="<%= juego.nombre %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="precio" class="form-label">Precio</label>
+      <input type="number" id="precio" name="precio" step="0.01" class="form-control" 
+             value="<%= juego.precio %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="empresa" class="form-label">Empresa</label>
+      <input type="text" id="empresa" name="empresa" class="form-control" 
+             value="<%= juego.empresa %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="consola" class="form-label">Consola</label>
+      <input type="text" id="consola" name="consola" class="form-control" 
+             value="<%= juego.consola %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="requerimientos_minimos" class="form-label">Requerimientos Mínimos</label>
+      <input type="text" id="requerimientos_minimos" name="requerimientos_minimos" 
+             class="form-control" value="<%= juego.requerimientos_minimos %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="stock" class="form-label">Stock</label>
+      <input type="number" id="stock" name="stock" class="form-control" 
+             value="<%= juego.stock %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="genero" class="form-label">Género</label>
+      <input type="text" id="genero" name="genero" class="form-control" 
+             value="<%= juego.genero %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="puntuacion_general" class="form-label">Puntuación</label>
+      <input type="number" id="puntuacion_general" name="puntuacion_general" step="0.1" 
+             class="form-control" value="<%= juego.puntuacion_general %>" required>
+    </div>
+
+    <div class="col-md-12">
+      <label class="form-label d-block">Imagen actual</label>
+      <% if (juego.imagen) { %>
+        <img src="<%= juego.imagen %>" alt="Imagen Juego" class="img-thumbnail mb-2" style="max-width:150px;">
+      <% } else { %>
+        <p class="text-muted">Sin imagen</p>
+      <% } %>
+    </div>
+
+    <div class="col-md-12">
+      <label for="imagen" class="form-label">Actualizar Imagen</label>
+      <input type="file" id="imagen" name="imagen" class="form-control">
+    </div>
+
+    <div class="col-12 d-flex justify-content-between mt-3">
+    <a href="/admin/panelProductos" class="btn btn-secondary">Volver al Panel</a>
+    <button type="submit" class="btn btn-primary">Actualizar Juego</button>
+  </div>
+</form>
+
+ </div>
+
+<script src="/js/editarJuego.js"></script>
+<script src="/js/validarEdicionJuego.js"></script>
+</body>
+
+
+<%- include('../partes/footer') %>

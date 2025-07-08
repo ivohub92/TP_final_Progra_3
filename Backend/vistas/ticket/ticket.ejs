@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ticket</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .ticket { border:1px solid #333; padding: 20px; width: 400px; margin: auto; }
+    .productos { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <div class="ticket">
+    <h2>Empresa: <%= ticket.empresa %></h2>
+    <p>Cliente: <%= ticket.cliente %></p>
+    <p>Fecha: <%= ticket.fecha %></p>
+    <hr>
+    <h3>Productos:</h3>
+    <div class="productos">
+      <% ticket.productos.forEach(p => { %>
+        <div>
+          Nombre: <%= p.nombre %>,
+          Cantidad: <%= p.cantidad %>,
+          Precio Unidad: $<%= p.precio %>,
+          Subtotal: $<%= (p.precio * p.cantidad).toFixed(2) %>
+        </div>
+      <% }) %>
+    </div>
+    <hr>
+    <h3>Total: $<%= ticket.total %></h3>
+  </div>
+</body>
+</html>
